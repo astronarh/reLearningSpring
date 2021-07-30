@@ -10,10 +10,14 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="classicalMusicBean" class="ru.astronarh.ClassicalMusic">
+    <bean id="classicalMusicBean"
+          class="ru.astronarh.ClassicalMusic"
+          init-method="doMyInitClassicalMusic"
+          destroy-method="doMyDestroyClassicalMusic"
+          factory-method="getClassicalMusic">
     </bean>
 
-    <bean id="rockMusicBean" class="ru.astronarh.RockMusic">
+    <bean id="rockMusicBean" class="ru.astronarh.RockMusic" init-method="doMyInitRockMusic" destroy-method="doMyDestroyRockMusic">
     </bean>
 
     <bean id="countryMusicBean" class="ru.astronarh.CountryMusic">
@@ -29,11 +33,11 @@
         </constructor-arg>
     </bean>
 
-    <bean id="musicPlayer" class="ru.astronarh.MusicPlayer" scope="prototype">
-        <property name="musicList" ref="musicBeans"/>
+<!--    <bean id="musicPlayer" class="ru.astronarh.MusicPlayer" scope="prototype">-->
+<!--        <property name="musicList" ref="musicBeans"/>-->
 
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
 
 </beans>
