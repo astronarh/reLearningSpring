@@ -29,7 +29,7 @@
         </constructor-arg>
     </bean>
 
-    <bean id="musicPlayer" class="ru.astronarh.MusicPlayer">
+    <bean id="musicPlayer" class="ru.astronarh.MusicPlayer" scope="prototype">
         <property name="musicList" ref="musicBeans"/>
 
         <property name="name" value="${musicPlayer.name}"/>
