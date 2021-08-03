@@ -3,6 +3,8 @@ package ru.astronarh;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
 @Component
 public class Computer {
     private int id;
@@ -16,6 +18,6 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer " + id + " " + musicPlayer.playMusic();
+        return "Computer " + id + " " + musicPlayer.playMusic(MusicGenres.values()[new Random().nextInt(MusicGenres.values().length)]);
     }
 }
