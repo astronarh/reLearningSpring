@@ -5,12 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
 public class Computer {
     private int id;
     private MusicPlayer musicPlayer;
 
-    @Autowired
     public Computer(MusicPlayer musicPlayer) {
         this.id = 1;
         this.musicPlayer = musicPlayer;
@@ -18,6 +16,6 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer " + id + " " + musicPlayer.playMusic(MusicGenres.values()[new Random().nextInt(MusicGenres.values().length)]);
+        return "Computer " + id + " " + musicPlayer.playMusic();
     }
 }

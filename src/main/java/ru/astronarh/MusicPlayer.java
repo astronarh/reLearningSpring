@@ -1,11 +1,10 @@
 package ru.astronarh;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-@Component
+import java.util.List;
+import java.util.Random;
+
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
     private String name;
@@ -25,23 +24,13 @@ public class MusicPlayer {
     private Music music2;
     private Music music3;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1, @Qualifier("classicalMusic") Music music2, @Qualifier("countryMusic") Music music3) {
-        this.music1 = music1;
-        this.music2 = music2;
-        this.music3 = music3;
+    private List<Music> musicList;
+
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
-    public String playMusic(MusicGenres musicGenres) {
-        switch (musicGenres) {
-            case CLASSICAL:
-                return "Playing: " + music1.getSong();
-            case ROCK:
-                return "Playing: " + music2.getSong();
-            case COUNTRY:
-                return "Playing: " + music3.getSong();
-            default:
-                return "";
-        }
+    public String playMusic() {
+        return musicList.get(new Random().nextInt(musicList.size())).getSong();
     }
 }
